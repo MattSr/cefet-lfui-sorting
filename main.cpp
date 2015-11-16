@@ -1,14 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "ordenacao.h"
+#include "heaspsort.cpp"
 
-
-//-------------------------------------------------------------------------
-
-// Gera vetor aleatoriamente com tamanho n
-
-//-------------------------------------------------------------------------
 
 void GerarVetorAleatorio(unsigned long *v, unsigned long n){
 	unsigned long i;
@@ -17,40 +11,24 @@ void GerarVetorAleatorio(unsigned long *v, unsigned long n){
     }
 }
 
-Estatisticas Ordenar(unsigned long *v, unsigned long n)
-
-{
+Estatisticas Ordenar(unsigned long *v, unsigned long n){
 	Estatisticas estatisticas;
 	estatisticas.movimentacoes = 0;
 	estatisticas.comparacoes = 0;
 	clock_t tempo1, tempo2;
 	tempo1 = clock();
-// pode ser: Selecao, Insercao, QuickSort ou HeapSort
     void (*algoritmoEscolhido)(unsigned long *, unsigned long, unsigned long *, unsigned long *) = Selecao;
     algoritmoEscolhido(v, n, &estatisticas.movimentacoes, &estatisticas.comparacoes);
 	tempo2 = clock();
 	estatisticas.tempo =  (double)(tempo2 - tempo1) / CLOCKS_PER_SEC;
 	return estatisticas;
-
-
-
 }
 
-
-
-//-------------------------------------------------------------------------
-
-// Funcao principal
-
-//-------------------------------------------------------------------------
-
-int main(int argc, char **argv)
-
-{
-    printf("|                                                    |\n");//pergunta tamanho do vetor
+int main(int argc, char **argv){
+    printf("|                                                    |\n");
     int tamanho = 100000;
     printf("| Tamanho do vetor: %d                           |\n", tamanho);
-    printf("| Gerando vetor aleatorio...                         |\n");//cria o vetor de acordo com o tipo de conjunto escolhido
+    printf("| Gerando vetor aleatorio...                         |\n");
     unsigned long* v = (unsigned long*)malloc(sizeof(unsigned long)*tamanho);
     GerarVetorAleatorio(v, tamanho);
     printf("| Vetor gerado                                       |\n");
