@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "heaspsort.cpp"
+#include "ordenacao.h"
 
 
 void GerarVetorAleatorio(unsigned long *v, unsigned long n){
@@ -17,7 +17,7 @@ Estatisticas Ordenar(unsigned long *v, unsigned long n){
 	estatisticas.comparacoes = 0;
 	clock_t tempo1, tempo2;
 	tempo1 = clock();
-    void (*algoritmoEscolhido)(unsigned long *, unsigned long, unsigned long *, unsigned long *) = Selecao;
+    void (*algoritmoEscolhido)(unsigned long *, unsigned long, unsigned long *, unsigned long *) = HeapSort;
     algoritmoEscolhido(v, n, &estatisticas.movimentacoes, &estatisticas.comparacoes);
 	tempo2 = clock();
 	estatisticas.tempo =  (double)(tempo2 - tempo1) / CLOCKS_PER_SEC;
